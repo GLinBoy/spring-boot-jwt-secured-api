@@ -6,6 +6,7 @@ plugins {
     kotlin("jvm") version "1.7.22"
     kotlin("plugin.spring") version "1.7.22"
     kotlin("plugin.jpa") version "1.7.22"
+    id ("com.github.ben-manes.versions") version "0.44.0"
 }
 
 group = "com.glinboy.test"

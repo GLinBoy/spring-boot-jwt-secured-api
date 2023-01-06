@@ -1,3 +1,8 @@
+-- Default password for john.doe@gmail.com is: asd@123456
+INSERT INTO USERS (EMAIL, ROLES, PASSWORD) VALUES
+    ('john.doe@gmail.com','ROLE_ADMIN,ROLE_USER','$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui'),
+    ('jane.doe@gmail.com','ROLE_USER','$2a$10$Zj38WYKI.gGbhQWuATpY2.nI8CowD/ujyC7c2MozoyMBGNi8z6bui');
+
 insert into BOOK (id, title, author, isbn) values (1001, 'Pay It Forward', 'Cinderella Schleicher', '778744906-3');
 insert into BOOK (id, title, author, isbn) values (1002, 'Leaves from Satan''s Book (Blade af Satans bog)', 'Anthia Stimson', '377672897-3');
 insert into BOOK (id, title, author, isbn) values (1003, 'Last Days in the Desert', 'Jarrid Rounding', '403989927-X');

@@ -3,6 +3,7 @@ package com.glinboy.test.springboot3security.web.api
 import com.glinboy.test.springboot3security.entity.Book
 import com.glinboy.test.springboot3security.service.BookServiceApi
 import io.swagger.v3.oas.annotations.Parameter
+import io.swagger.v3.oas.annotations.security.SecurityRequirement
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
@@ -12,6 +13,7 @@ import org.springframework.web.server.ResponseStatusException
 
 @RestController
 @RequestMapping("/api/v1/books")
+@SecurityRequirement(name = "Bearer Authentication")
 class BookResource(val bookService: BookServiceApi) {
 
     @GetMapping

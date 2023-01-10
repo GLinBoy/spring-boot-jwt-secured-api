@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
 
@@ -17,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException
 class UserResource(private val userService: UserServiceApi) {
 
     @GetMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     fun getUsers(@Parameter(hidden = true) pageable: Pageable): ResponseEntity<Page<User>> =
         ResponseEntity.ok(userService.getUsers(pageable))
 

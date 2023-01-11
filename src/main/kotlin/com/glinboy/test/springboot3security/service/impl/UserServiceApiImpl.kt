@@ -53,6 +53,15 @@ class UserServiceImpl(private val repository: UserRepository): UserServiceApi {
         }
     }
 
-    override fun saveUser(user: User): User = repository.save(user)
+    override fun saveUser(user: User): User {
+        val auth: Authentication = SecurityContextHolder.getContext().authentication
+        if (auth.name == user.email ||
+            auth.authorities.stream().anyMatch { it.authority == "ROLE_ADMIN" }) {
+            return repository.save(user)
+        } else {
+            throw ResponseStatusException(HttpStatus.FORBIDDEN,
+                "You don't have permit to get information of this user")
+        }
+    }
     override fun deleteUser(id: String) = repository.deleteById(id)
 }

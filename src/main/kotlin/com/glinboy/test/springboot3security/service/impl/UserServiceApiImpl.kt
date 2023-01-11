@@ -63,5 +63,18 @@ class UserServiceImpl(private val repository: UserRepository): UserServiceApi {
                 "You don't have permit to get information of this user")
         }
     }
-    override fun deleteUser(id: String) = repository.deleteById(id)
+
+    override fun deleteUser(id: String) {
+        val auth: Authentication = SecurityContextHolder.getContext().authentication
+        if (auth.name == id ||
+            auth.authorities.stream().anyMatch { it.authority == "ROLE_ADMIN" }
+        ) {
+            repository.deleteById(id)
+        } else {
+            throw ResponseStatusException(
+                HttpStatus.FORBIDDEN,
+                "You don't have permit to get information of this user"
+            )
+        }
+    }
 }

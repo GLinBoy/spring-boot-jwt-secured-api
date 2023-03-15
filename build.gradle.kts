@@ -14,6 +14,8 @@ group = "com.glinboy.test"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
+val springDocVersion = "2.0.3"
+
 repositories {
     mavenCentral()
 }
@@ -26,8 +28,8 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.3")
-    implementation("org.springdoc:springdoc-openapi-starter-common:2.0.3")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:$springDocVersion")
+    implementation("org.springdoc:springdoc-openapi-starter-common:$springDocVersion")
     implementation("org.hibernate.validator:hibernate-validator")
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")

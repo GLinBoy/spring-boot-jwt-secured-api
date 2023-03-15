@@ -16,6 +16,7 @@ java.sourceCompatibility = JavaVersion.VERSION_17
 
 val springDocVersion = "2.0.3"
 val jjwtVersion = "0.11.5"
+val jaxbApiVersion = "2.1"
 
 repositories {
     mavenCentral()
@@ -35,7 +36,7 @@ dependencies {
     implementation("io.jsonwebtoken:jjwt-api:$jjwtVersion")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:$jjwtVersion")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:$jjwtVersion")
-    implementation("javax.xml:jaxb-api:2.1")
+    implementation("javax.xml:jaxb-api:$jaxbApiVersion")
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")

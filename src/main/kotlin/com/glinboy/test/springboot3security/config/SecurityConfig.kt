@@ -13,9 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.security.web.SecurityFilterChain
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter
-
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher
-
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher
 
 @Configuration
 @EnableWebSecurity
@@ -40,14 +38,16 @@ class SecurityConfig(
     @Bean
     fun securityFilterChain(http: HttpSecurity): SecurityFilterChain =
         http
-            .cors().disable()
-            .csrf().disable()
-            .headers().frameOptions().sameOrigin()
-            .and()
+            .cors { it.disable() }
+            .csrf { it.disable() }
+            .headers { it.frameOptions { it.disable() } }
             .authorizeHttpRequests {
                 it
-                    .requestMatchers(*AUTH_WHITELIST).permitAll()
-                    .requestMatchers(antMatcher("/h2-console/**")).permitAll()
+                    .requestMatchers(
+                        *AUTH_WHITELIST
+                            .map { AntPathRequestMatcher(it) }
+                            .toTypedArray()
+                    ).permitAll()
                     .anyRequest().authenticated()
             }
             .sessionManagement { it.sessionCreationPolicy(SessionCreationPolicy.STATELESS) }

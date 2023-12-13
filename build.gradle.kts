@@ -14,7 +14,7 @@ group = "com.glinboy.test"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
-val springDocVersion = "2.2.0"
+val springDocVersion = "2.3.0"
 val jjwtVersion = "0.12.3"
 val jaxbApiVersion = "2.1"
 

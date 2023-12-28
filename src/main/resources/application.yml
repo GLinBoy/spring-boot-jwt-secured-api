@@ -19,3 +19,6 @@ management:
     web:
       exposure:
         include: "*"
+
+application:
+  secret: ODBkYjM0OGUyNzAwNTIwNGNmMzRjM2Y0MzNkN2FkMmMyYWVhN2IyYWFjOTgzN2VhNDMyZWQ1OTA2ZDM0NjYwMTJmNGYwOGU0ZjI4ZGMxM2M4Njc2MDhiZWEwOGQ4YjZjYmQ2YzRmYjhkZjBhNWE3MzM4NDQxZDM4OTEzMGZjMjY=

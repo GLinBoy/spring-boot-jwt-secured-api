@@ -67,23 +67,24 @@ class JwtUtils {
     }
 
     fun createToken(authentication: Authentication, rememberMe: Boolean = false): String {
+        val key: SecretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY))
         val authorities: String = authentication
             .authorities
             .stream()
             .map { it.authority }
             .collect(Collectors.joining(","))
         val now = Date().time
-        var validity =
+        val validity =
             if (rememberMe)
-                Date(now + (1000 * 2_592_000))
+                Date(now + (2_592_000_000))
             else
-                Date(now + (1000 * 86_400))
+                Date(now + (86_400_000))
         return Jwts
             .builder()
-            .setSubject(authentication.name)
+            .subject(authentication.name)
             .claim("auth", authorities)
-            .signWith(key, SignatureAlgorithm.HS512)
-            .setExpiration(validity)
+            .expiration(validity)
+            .signWith(key, Jwts.SIG.HS512)
             .compact()
     }
 }

@@ -47,7 +47,11 @@ class JwtUtils {
     }
 
     fun getAuthentication(token: String): Authentication {
-        val claims: Claims = jwtParser.parseClaimsJws(token).body
+        val key: SecretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY))
+        val claims: Claims = Jwts.parser()
+            .verifyWith(key)
+            .build()
+            .parseSignedClaims(token).payload
         val authorities = claims.get("auth")
             .toString()
             .split(",")

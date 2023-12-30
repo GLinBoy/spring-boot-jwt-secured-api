@@ -5,25 +5,23 @@ import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
 import io.jsonwebtoken.security.SecurityException
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.authority.SimpleGrantedAuthority
 import org.springframework.security.core.userdetails.User
 import org.springframework.stereotype.Component
-import java.security.Key
 import java.util.*
 import java.util.stream.Collectors
+import javax.crypto.SecretKey
 
 @Component
 class JwtUtils {
 
     private val log = LoggerFactory.getLogger(this::class.java)
-    private val SECRET_KEY =
-        "ODBkYjM0OGUyNzAwNTIwNGNmMzRjM2Y0MzNkN2FkMmMyYWVhN2IyYWFjOTgzN2VhNDMyZWQ1OTA2ZDM0NjYwMTJmNGYwOGU0ZjI4ZGMxM2M4Njc2MDhiZWEwOGQ4YjZjYmQ2YzRmYjhkZjBhNWE3MzM4NDQxZDM4OTEzMGZjMjY="
-    private val jwtParser: JwtParser = Jwts.parserBuilder()
-        .setSigningKey(Decoders.BASE64.decode(SECRET_KEY))
-        .build()
-    private val key: Key = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY))
+
+    @Value("\${application.secret}")
+    lateinit var SECRET_KEY: String
 
     fun validateToken(token: String): Boolean {
         try {

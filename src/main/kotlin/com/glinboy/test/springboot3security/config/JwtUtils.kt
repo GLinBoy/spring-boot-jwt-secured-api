@@ -24,8 +24,12 @@ class JwtUtils {
     lateinit var SECRET_KEY: String
 
     fun validateToken(token: String): Boolean {
+        val key: SecretKey = Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY))
         try {
-            jwtParser.parseClaimsJws(token)
+            Jwts.parser()
+                .verifyWith(key)
+                .build()
+                .parseSignedClaims(token)
             return true
         } catch (ex: ExpiredJwtException) {
             log.trace("INVALID_JWT_TOKEN", ex);

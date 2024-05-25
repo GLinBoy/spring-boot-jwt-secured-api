@@ -15,7 +15,7 @@ version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 val springDocVersion = "2.5.0"
-val jjwtVersion = "0.12.3"
+val jjwtVersion = "0.12.5"
 val jaxbApiVersion = "2.1"
 
 repositories {
@@ -33,12 +33,12 @@ dependencies {
     implementation("org.springdoc:springdoc-openapi-starter-common:$springDocVersion")
     implementation("org.hibernate.validator:hibernate-validator")
     implementation("io.jsonwebtoken:jjwt-api:$jjwtVersion")
+    implementation("javax.xml:jaxb-api:$jaxbApiVersion")
     runtimeOnly("io.jsonwebtoken:jjwt-impl:$jjwtVersion")
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:$jjwtVersion")
-    implementation("javax.xml:jaxb-api:$jaxbApiVersion")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
 
 tasks.withType<KotlinCompile> {

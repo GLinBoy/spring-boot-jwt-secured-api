@@ -15,7 +15,7 @@ version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_21
 
 val springDocVersion = "2.5.0"
-val jjwtVersion = "0.12.5"
+val jjwtVersion = "0.12.6"
 val jaxbApiVersion = "2.1"
 
 repositories {

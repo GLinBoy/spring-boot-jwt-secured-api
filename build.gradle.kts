@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm") version "2.3.21"
     kotlin("plugin.spring") version "2.3.21"
     kotlin("plugin.jpa") version "2.3.21"
-    id ("com.github.ben-manes.versions") version "0.53.0"
+    id ("com.github.ben-manes.versions") version "0.54.0"
     id ("org.ec4j.editorconfig") version "0.1.0"
 }
 
@@ -19,7 +19,7 @@ java {
     }
 }
 
-val springDocVersion = "3.0.0"
+val springDocVersion = "3.0.3"
 val jjwtVersion = "0.13.0"
 val jaxbApiVersion = "2.1"
 
